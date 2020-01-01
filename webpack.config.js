@@ -1,14 +1,13 @@
 /* eslint-env node */
-const webpack = require('webpack')
 const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'src/sports.js'),
+  entry: path.resolve(__dirname, './src/SportsStore.ts'),
   output: {
-    filename: 'sports.js',
-    library: 'sports',
+    filename: 'SportsStore.js',
+    library: 'SportsStore',
     libraryTarget: 'amd',
     path: path.resolve(__dirname, 'build'),
   },
@@ -58,7 +57,7 @@ module.exports = {
           {
             loader: 'kremling-loader',
             options: {
-              namespace: 'sports',
+              namespace: 'SportsStore',
               postcss: {
                 plugins: {
                   'autoprefixer': {}
@@ -68,6 +67,11 @@ module.exports = {
           },
         ]
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   resolve: {
@@ -75,12 +79,13 @@ module.exports = {
       __dirname,
       'node_modules',
     ],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new CleanWebpackPlugin(['build/sports']),
-    CopyWebpackPlugin([
-      { from: path.resolve(__dirname, 'src/sports.js') }
-    ]),
+    new CleanWebpackPlugin(['build']),
+    // CopyWebpackPlugin([
+    //   { from: path.resolve(__dirname, './src/SportsStore.ts') }
+    // ]),
   ],
   devtool: 'source-map',
   externals: [

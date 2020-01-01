@@ -6,20 +6,21 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "build": "webpack --config ./webpack.config.js -p",
-    "start": "webpack-dev-server --config ./webpack.dev.js --port 8236",
-    "check": "gts check",
-    "clean": "gts clean",
-    "compile": "tsc -p .",
-    "fix": "gts fix",
-    "prepare": "yarn run compile",
-    "pretest": "yarn run compile",
-    "posttest": "yarn run check"
+    "start": "webpack-dev-server --config ./webpack.dev.js --port 8133"
   },
   "author": "Hudson Graham",
   "license": "ISC",
   "dependencies": {
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.1"
+    "@codewithdan/observable-store": "^2.2.3",
+    "@codewithdan/observable-store-extensions": "^2.2.3",
+    "async-decorator": "0.3.0",
+    "kremling": "1.0.4",
+    "query-string": "6.1.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "rxjs": "^6.5.4",
+    "single-spa-react": "2.8.1",
+    "ts-loader": "^6.2.1"
   },
   "devDependencies": {
     "@babel/core": "7.0.0",
@@ -29,20 +30,22 @@
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "7.0.0",
     "@babel/preset-react": "7.0.0",
+    "@types/node": "^10.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.14.0",
+    "@typescript-eslint/parser": "^2.14.0",
     "autoprefixer": "9.1.5",
     "babel-core": "6.26.3",
     "babel-loader": "8.0.0",
     "clean-webpack-plugin": "0.1.19",
     "copy-webpack-plugin": "4.5.2",
     "css-loader": "1.0.0",
+    "eslint": "^6.8.0",
     "kremling-loader": "0.1.1",
     "postcss-loader": "3.0.0",
     "style-loader": "0.23.0",
+    "typescript": "^3.7.4",
     "webpack": "4.17.1",
     "webpack-cli": "3.1.0",
-    "webpack-dev-server": "^3.1.14",
-    "gts": "^1.1.2",
-    "typescript": "~3.7.0",
-    "@types/node": "^10.0.3"
+    "webpack-dev-server": "^3.1.14"
   }
 }

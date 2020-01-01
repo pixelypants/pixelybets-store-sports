@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- 8.9
+install:
+- yarn install
+script:
+- yarn build
+deploy:
+  provider: s3
+  access_key_id: AKIAJQA766P2RW32RWLA
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: pixelybets-store-sports
+  skip_cleanup: true
+  local_dir: build
+  alc: public_read
