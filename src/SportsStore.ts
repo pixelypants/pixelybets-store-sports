@@ -1,11 +1,18 @@
 import { Observable, of } from 'rxjs';
 import { ObservableStore } from '@codewithdan/observable-store';
+import { ReduxDevToolsExtension } from '@codewithdan/observable-store-extensions';
 
 export interface StoreState {
   sports: {
     matches: any[];
   };
 }
+
+ObservableStore.globalSettings = {
+  trackStateHistory: true
+};
+ObservableStore.addExtension(new ReduxDevToolsExtension({ reactRouterHistory: history }))
+
 
 class SportsStore extends ObservableStore<StoreState> {
   constructor() {
@@ -15,7 +22,7 @@ class SportsStore extends ObservableStore<StoreState> {
       },
     };
     super({ trackStateHistory: true, logStateChanges: true });
-    this.setState(initialState, 'INIT_STATE');
+    this.setState(initialState, sportsStoreActions.InitSportsState);
   }
 
   fetchSports() {
@@ -44,7 +51,7 @@ class SportsStore extends ObservableStore<StoreState> {
 
 export const sportsStoreActions = {
   GetSports: 'GET_SPORTS',
-  GetSport: 'GET_SPORT',
+  InitSportsState: 'INIT_STATE',
 };
 
 export default new SportsStore();
