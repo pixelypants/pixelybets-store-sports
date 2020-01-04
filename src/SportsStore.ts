@@ -2,26 +2,65 @@ import { Observable, of } from 'rxjs';
 import { ObservableStore } from '@codewithdan/observable-store';
 import { ReduxDevToolsExtension } from '@codewithdan/observable-store-extensions';
 
+export interface Proposition {
+  id: string;
+  name: string;
+  returnWin: number;
+  returnPlace: number;
+  bettingStatus: string;
+  allowPlace: boolean;
+  number: number;
+  isOpen: boolean;
+  sortOrder: number;
+  position: string;
+}
+
+export interface Matche {
+  id: string;
+  name: string;
+  shortName: string;
+  betOption: string;
+  betOptionSpectrumId: string;
+  betOptionPriority: number;
+  marketUniqueId: number;
+  closeTime: Date;
+  bettingStatus: string;
+  message?: any;
+  informationMessage?: any;
+  isFuture: boolean;
+  onlineBetting: boolean;
+  phoneBettingOnly: boolean;
+  inPlay: boolean;
+  goingInPlay: boolean;
+  allowWin: boolean;
+  allowPlace: boolean;
+  allowEachWay: boolean;
+  allowMulti: boolean;
+  allowMultiWin: boolean;
+  allowMultiPlace: boolean;
+  allowMultiEachWay: boolean;
+  numberOfPlaces: number;
+  cashOutEligibility: string;
+  allowBundle: boolean;
+  propositions: Proposition[];
+}
+
 export interface StoreState {
   sports: {
-    matches: any[];
+    matches: Matche[];
   };
 }
 
-ObservableStore.globalSettings = {
-  trackStateHistory: true
-};
 ObservableStore.addExtension(new ReduxDevToolsExtension({ reactRouterHistory: history }))
-
 
 class SportsStore extends ObservableStore<StoreState> {
   constructor() {
+    super({ trackStateHistory: true, logStateChanges: true });
     const initialState = {
       sports: {
         matches: [],
       },
     };
-    super({ trackStateHistory: true, logStateChanges: true });
     this.setState(initialState, sportsStoreActions.InitSportsState);
   }
 
